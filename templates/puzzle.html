@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Crossword</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>Crossword Learning Platform</h1>
+            <p>Your generated crossword puzzle</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="panel">
+            <h2>{{ metadata.Topic }}</h2>
+            <p>
+                <strong>Subject:</strong> {{ metadata.Subject }} |
+                <strong>Chapter:</strong> {{ metadata.Chapter }} |
+                <strong>Difficulty:</strong> {{ metadata.Difficulty }}
+            </p>
+            <p>Review this draft before publishing it to students.</p>
+        </section>
+
+        {% if puzzle.grid %}
+        <section class="panel">
+            <h2>Crossword Grid</h2>
+            <div class="crossword-wrapper">
+                <table class="crossword-grid">
+                    {% for row in puzzle.grid %}
+                    <tr>
+                        {% for cell in row %}
+                        <td class="{% if cell %}filled{% else %}empty{% endif %}">
+                            {% if cell %}&nbsp;{% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+        {% endif %}
+
+        <section class="panel">
+            <h2>Across</h2>
+            {% for item in puzzle.across %}
+            <div class="clue-item">
+                <strong>{{ item.number }}.</strong> {{ item.clue }}
+            </div>
+            {% else %}
+            <p>No across clues were generated.</p>
+            {% endfor %}
+        </section>
+
+        <section class="panel">
+            <h2>Down</h2>
+            {% for item in puzzle.down %}
+            <div class="clue-item">
+                <strong>{{ item.number }}.</strong> {{ item.clue }}
+            </div>
+            {% else %}
+            <p>No down clues were generated.</p>
+            {% endfor %}
+        </section>
+
+        <section class="panel">
+            <h2>Answer Check</h2>
+            <p>Enter your answer for each clue to check it.</p>
+
+            {% for item in puzzle.entries %}
+            <div class="answer-item">
+                <label for="answer-{{ loop.index }}">
+                    {{ item.number }}. {{ item.direction|capitalize }} — {{ item.clue }}
+                </label>
+                <input
+                    type="text"
+                    id="answer-{{ loop.index }}"
+                    class="answer-input"
+                    data-answer="{{ item.answer }}"
+                    placeholder="Enter your answer"
+                >
+                <span class="answer-feedback"></span>
+            </div>
+            {% endfor %}
+
+            <button type="button" id="check-answers">Check Answers</button>
+        </section>
+
+        <section class="panel">
+            <h2>Teacher Review</h2>
+            <p>Check every answer and definition before publishing this puzzle.</p>
+            <ul>
+                {% for item in puzzle.entries %}
+                <li>
+                    <strong>{{ item.original }}</strong> — {{ item.clue }}
+                    <span class="review-tag">Review required</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <a class="back-link" href="{{ url_for('home') }}">← Create another crossword</a>
+    </main>
+
+    <script src="{{ url_for('static', filename='game.js') }}"></script>
+</body>
+</html>
