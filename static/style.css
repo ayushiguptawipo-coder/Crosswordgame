@@ -1,0 +1,165 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f6fb;
+    color: #243047;
+    line-height: 1.6;
+}
+
+.container {
+    width: min(920px, 92%);
+    margin: 0 auto;
+}
+
+.site-header {
+    background: #203864;
+    color: white;
+    padding: 32px 0;
+    text-align: center;
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.site-header p {
+    margin: 8px 0 0;
+    color: #dce6f5;
+}
+
+main.container {
+    padding: 28px 0;
+}
+
+.panel {
+    background: white;
+    padding: 25px;
+    margin-bottom: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+h2 {
+    color: #203864;
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input[type="file"],
+.answer-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    margin-bottom: 16px;
+    background: white;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: 0;
+    padding: 12px 22px;
+    border-radius: 7px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.alert {
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 7px;
+}
+
+.alert.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.crossword-wrapper {
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.crossword-grid {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.crossword-grid td {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #64748b;
+}
+
+.crossword-grid td.filled {
+    background: white;
+}
+
+.crossword-grid td.empty {
+    background: #263449;
+}
+
+.clue-item,
+.answer-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.answer-feedback {
+    display: block;
+    margin-top: -8px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.review-tag {
+    color: #92400e;
+    font-size: 12px;
+    background: #fef3c7;
+    padding: 3px 7px;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.back-link {
+    display: inline-block;
+    margin: 10px 0 25px;
+    color: #2563eb;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #64748b;
+}
+
+@media (max-width: 600px) {
+    .site-header h1 {
+        font-size: 23px;
+    }
+
+    .panel {
+        padding: 18px;
+    }
+
+    .crossword-grid td {
+        width: 25px;
+        height: 25px;
+    }
+}
