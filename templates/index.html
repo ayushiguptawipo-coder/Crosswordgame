@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossword Learning Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>Crossword Learning Platform</h1>
+            <p>Turn your learning material into interactive crossword puzzles.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="panel">
+            <h2>Create a Crossword</h2>
+            <p>Upload your completed teacher Word template to generate a crossword.</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('generate') }}" method="POST" enctype="multipart/form-data">
+                <label for="document">Select your Word document (.docx)</label>
+                <input type="file" id="document" name="document" accept=".docx" required>
+
+                <button type="submit">Generate Crossword</button>
+            </form>
+        </section>
+
+        <section class="panel information">
+            <h2>How it works</h2>
+            <ol>
+                <li>Complete the teacher Word template.</li>
+                <li>Enter the subject, chapter, topic and difficulty.</li>
+                <li>Add answers and their definitions.</li>
+                <li>Upload the document to generate a crossword draft.</li>
+                <li>Review the clues before sharing the puzzle with students.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>Crossword Learning Platform | Educational Learning Tool</p>
+    </footer>
+</body>
+</html>
